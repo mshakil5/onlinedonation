@@ -284,4 +284,11 @@ class FrontendController extends Controller
         // dd($data);
         return view('frontend.eventdetails', compact('data','shareComponent'));
     }
+
+    public function charityCampaign()
+    {
+        $charities = User::select('photo','id','name','postcode','town','street_name','house_number')->where('is_type', '2')->limit(6)->orderby('id','DESC')->where('status','1')->get();
+
+        return view('frontend.charitycampaign',compact('charities'));
+    }
 }

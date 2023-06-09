@@ -54,7 +54,7 @@
                                     {{-- <div class="nav-link shadow-sm d-flex align-items-center justify-content-center" id="contact-tab" data-bs-toggle="tab" role="tab" aria-controls="contact" aria-selected="false">
                                         <div class="fw-bold">Charity</div>
                                     </div> --}}
-                                    <a href="{{route('frontend.nonprofit')}}" class="nav-link shadow-sm d-flex align-items-center justify-content-center">Charity</a>
+                                    <a href="{{route('frontend.charityCampaign')}}" class="nav-link shadow-sm d-flex align-items-center justify-content-center">Charity</a>
                                 </li>
                             </ul>
                             {{-- <div class="tab-content shadow-sm">

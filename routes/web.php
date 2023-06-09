@@ -148,6 +148,9 @@ Route::group(['middleware' => ['auth']], function(){
 
     Route::post('event-book', [EventController::class, 'freeEventbooked']);
 
+    // charity campaign
+    Route::get('/charity-campaign', [FrontendController::class, 'charityCampaign'])->name('frontend.charityCampaign');
+
 });
 
 
