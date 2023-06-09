@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col-lg-12 mx-auto">
                 <div class="row">
-                    <div class="col-md-6 d-flex align-items-center justify-content-center column-hide">
+                    <div class="col-md-6 d-flex align-items-center column-hide">
                         <div class="inner w-75">
                             <div class="intro-title">
                                 {{\App\Models\Slider::where('id','1')->first()->left_title}}
@@ -104,7 +104,7 @@
                 <img src="{{asset('images/event/'.$singleevent->image)}}" alt="">
                </a>
               <div class="action">
-                <p class="w-50 text-center para">{{$singleevent->summery}}</p>
+                <p class="w-50 text-center para text-white">{{$singleevent->summery}}</p>
                
                 <a href="{{ route('frontend.eventDetails',$singleevent->id)}}" class=" btn btn-theme bg-primary eventAction ">Action Button</a>
               </div>
@@ -115,10 +115,9 @@
 @endif
 
 
-
 <!--Campaign Section -->
 <section class="campaign default">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="title">
                 Featured Campaign
@@ -140,14 +139,14 @@
                     $total_donar = $campaign->transaction->count();
                 @endphp
 
-                <div class="col-md-3 col-sm-6">
+                <div class="col-md-4 col-sm-6">
                     <div class="card-theme mb-3">
                         <div class="topper d-flex align-items-center justify-content-center">
                             <a href="{{ route('frontend.campaignDetails',$campaign->id)}}" class="p-0 d-block w-100">
                                 <img src="{{asset('images/campaign/'.$campaign->image)}}">
                             </a>
                         </div>
-                        <div class="card-body ">
+                        <div class="card-body px-2">
                             <div class="inner">
                                 <div class="card-title text-start ">
                                     <a href="{{ route('frontend.campaignDetails',$campaign->id)}}">
@@ -198,7 +197,7 @@
 
 <!--Event Section -->
 <section class="bleesed default">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="title">
                 Featured Events
@@ -217,7 +216,7 @@
                         </div>
     
                         
-                        <div class="card-body  bg-light fs-4 text-center">
+                        <div class="card-body px-2 bg-light fs-4 text-center">
                             <div class="inner" style="font-size: 22px;">
                                 <div class="card-title  ">
                                     <a href="{{ route('frontend.eventDetails',$event->id)}}" title="{{$event->title}}">
@@ -234,11 +233,11 @@
                                   
                                </div>
                                <h5 class="mb-0 darkerGrotesque-semibold mb-0">
-                                <span class="txt-primary"> Venue:</span>
-                                {{$event->venue_name}}
+                                <span class="txt-primary"> Venue:</span><br>
+                                ({{$event->venue_name}})
                                </h5> 
                                <h5 class="mb-0 darkerGrotesque-semibold mb-2 mh-50">
-                               Location:  <span class="text-muted"> {{$event->house_number}} {{$event->road_name}} {{$event->town}} {{$event->postcode}}</span>
+                               <span class="txt-primary"> Location:</span> <br> <span class="txt-secondary"> {{$event->house_number}} {{$event->road_name}} {{$event->town}} {{$event->postcode}}</span>
                                </h5> 
                                
                                <div class="w-100 text-center">
@@ -261,7 +260,7 @@
 
 <!--charities-->
 <section class="campaign default">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="title">
                 We help charities, raise more
@@ -286,7 +285,7 @@
                                 <img src="https://via.placeholder.com/100.png">
                             @endif
                         </div>
-                        <div class="card-body bg-light text-center">
+                        <div class="card-body px-2 bg-light text-center">
                             <div class="inner">
                                 <div class="card-title ">           
                                     @if (Auth::user())
@@ -298,7 +297,7 @@
                                         </a>
                                     @endif
                                 </div>
-                               <h5 class="mb-0 darkerGrotesque-semibold mb-3 d-flex align-items-center justify-content-center" style="min-height:45px;">
+                               <h5 class="mb-0 darkerGrotesque-semibold mb-3 d-flex align-items-center justify-content-center flex-column" style="min-height:45px;">
                                 <iconify-icon icon="bx:map"></iconify-icon>
                                 <span class="text-dark"> {{$charity->house_number}} {{$charity->street_name}} {{$charity->town}} {{$charity->postcode}}</span>
                                </h5> 
@@ -399,7 +398,7 @@
         $('.campaign-slider').slick({
             centerMode: false,
             centerPadding: '0px',
-            slidesToShow: 4,
+            slidesToShow: 3,
             slidesToScroll: 1,
             draggable: true,
             swipeToSlide: true,
@@ -448,7 +447,7 @@
         $('.event-slider').slick({
             centerMode: false,
             centerPadding: '0px',
-            slidesToShow: 4,
+            slidesToShow: 3,
             slidesToScroll: 1,
             draggable: true,
             swipeToSlide: true,

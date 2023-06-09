@@ -210,10 +210,9 @@
 
 
                                 <fieldset>
+
                                     <h3 class="fs-subtitle para fs-6 txt-secondary mb-0 text-center "> Step 4</h3>
                                     <h5 class="txt-primary mb-4 text-center fs-4"> Create ticket </h5>
-
-                                    
 
                                     <div class="row"> 
                                         <div class="col-md-1 text-start">
@@ -230,18 +229,20 @@
                                             <thead>
                                                 <tr>
                                                     <th scope="col" class="text-center">Type</th>
-                                                    <th scope="col" class="text-center">No. of People</th>
+                                                    <th scope="col" class="text-center">Description</th>
                                                     <th scope="col" class="text-center">Price</th>
-                                                    <th scope="col" class="text-center">Note</th>
+                                                    <th scope="col" class="text-center">Max person per ticket</th>
+                                                    <th scope="col" class="text-center">Total ticket</th>
                                                     <th scope="col" class="text-center">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody id="priceinner">
                                                 <tr>
                                                     <td class="px-2"><input type="text"    id="type" name="type[]"  class="form-control"></td>
-                                                    <td class="px-2"><input type="number"  id="qty" name="qty[]"  class="form-control"></td>
-                                                    <td class="px-2"><input type="number"  id="ticket_price" name="ticket_price[]"  class="form-control"></td>
                                                     <td class="px-2"><input type="text" id="note" name="note[]"  class="form-control"></td>
+                                                    <td class="px-2"><input type="number"  id="ticket_price" name="ticket_price[]"  class="form-control"></td>
+                                                    <td class="px-2"><input type="number"  id="max_person" name="max_person[]"  class="form-control max_person"></td>
+                                                    <td class="px-2"><input type="number"  id="qty" name="qty[]"  class="form-control qty"></td>
                                                     <td><a class="btn btn-sm btn-theme bg-secondary ms-1 add-new-row" id="addnewrow">+</a></td>
                                                 </tr>
                                                 
@@ -251,13 +252,13 @@
                                     </div>
 
                                     <div class="row"> 
-                                        <div class="col-md-3 text-start">
+                                        <div class="col-md-5 text-start">
                                             <label for="" class="fs-5 fw-bold ">
-                                                Quantity of ticket:
+                                               Total Quantity of ticket:
                                             </label>
                                         </div>
-                                        <div class="col-md-9">
-                                            <input type="number" name="quantity" id="quantity" class="form-control" placeholder="Quantity of ticket">
+                                        <div class="col-md-7">
+                                            <input type="number" name="quantity" id="quantity" class="form-control" placeholder="Quantity of ticket" readonly>
                                         </div>
                                     </div>
                                     {{-- <div class="row">
@@ -271,22 +272,22 @@
                                         </div>
                                     </div> --}}
                                     <div class="row">
-                                        <div class="col-md-3 text-start">
+                                        <div class="col-md-5 text-start">
                                             <label for="" class="fs-5 fw-bold ">
                                                 Sale start date/time:
                                             </label>
                                         </div>
-                                        <div class="col-md-9">
+                                        <div class="col-md-7">
                                             <input type="datetime-local" id="sale_start_date" name="sale_start_date" class="form-control" />
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-3 text-start">
+                                        <div class="col-md-5 text-start">
                                             <label for="" class="fs-5 fw-bold ">
                                                 Sale end date/time:
                                             </label>
                                         </div>
-                                        <div class="col-md-9">
+                                        <div class="col-md-7">
                                             <input type="datetime-local" id="sale_end_date" name="sale_end_date" class="form-control" />
                                         </div>
                                     </div>
@@ -415,7 +416,7 @@
 
     $("#addnewrow").click(function() {
 
-    var pmarkup = '<tr><td class="px-2"><input type="text" id="type" name="type[]" class="form-control"></td><td class="px-2"><input type="number" id="qty" name="qty[]" class="form-control"></td><td class="px-2"><input type="number" id="ticket_price" name="ticket_price[]" class="form-control"></td><td class="px-2"><input type="text" id="note" name="note[]" class="form-control"></td><td width="50px" style="padding-left:2px"><div style="color:#fff;user-select:none;padding:2px;background:red;width:25px;display:flex;align-items:center;margin-right:5px;justify-content:center;border-radius:4px;left:4px" onclick="removeRow(event)">X</div></td></tr>';
+    var pmarkup = '<tr><td class="px-2"><input type="text" id="type" name="type[]" class="form-control"></td><td class="px-2"><input type="text" id="note" name="note[]" class="form-control"></td><td class="px-2"><input type="number" id="ticket_price" name="ticket_price[]" class="form-control"></td><td class="px-2"><input type="number"  id="max_person" name="max_person[]"  class="form-control max_person"></td><td class="px-2"><input type="number" id="qty" name="qty[]" class="form-control qty"></td><td width="50px" style="padding-left:2px"><div style="color:#fff;user-select:none;padding:2px;background:red;width:25px;display:flex;align-items:center;margin-right:5px;justify-content:center;border-radius:4px;left:4px" onclick="removeRow(event)">X</div></td></tr>';
     $("div #priceinner ").append(pmarkup);
 
     });
@@ -471,12 +472,16 @@ $(document).ready(function () {
                 var qty = $("input[name='qty[]']")
                     .map(function(){return $(this).val();}).get();
 
+                var max_person = $("input[name='max_person[]']")
+                    .map(function(){return $(this).val();}).get();
+
                 var ticket_price = $("input[name='ticket_price[]']")
                     .map(function(){return $(this).val();}).get();
 
                 var note = $("input[name='note[]']")
                     .map(function(){return $(this).val();}).get();
 
+                    form_data.append('max_person', max_person);
                     form_data.append('type', type);
                     form_data.append('qty', qty);
                     form_data.append('ticket_price', ticket_price);
@@ -513,31 +518,57 @@ $(document).ready(function () {
 
 });
 
-// images
-        /* WHEN YOU UPLOAD ONE OR MULTIPLE FILES */
-        $(document).on('change','#image',function(){
-            len_files = $("#image").prop("files").length;
-            var construc = "<div class='row'>";
-            for (var i = 0; i < len_files; i++) {
-                var file_data2 = $("#image").prop("files")[i];
-                storedFiles.push(file_data2);
-                construc += '<div class="col-3 singleImage my-3"><span data-file="'+file_data2.name+'" class="btn ' +
-                    'btn-sm btn-danger imageremove2">&times;</span><img width="120px" height="auto" src="' +  window.URL.createObjectURL(file_data2) + '" alt="'  +  file_data2.name  + '" /></div>';
-            }
-            construc += "</div>";
-            $('.preview2').append(construc);
-        });
+    // images
+    /* WHEN YOU UPLOAD ONE OR MULTIPLE FILES */
+    $(document).on('change','#image',function(){
+        len_files = $("#image").prop("files").length;
+        var construc = "<div class='row'>";
+        for (var i = 0; i < len_files; i++) {
+            var file_data2 = $("#image").prop("files")[i];
+            storedFiles.push(file_data2);
+            construc += '<div class="col-3 singleImage my-3"><span data-file="'+file_data2.name+'" class="btn ' +
+                'btn-sm btn-danger imageremove2">&times;</span><img width="120px" height="auto" src="' +  window.URL.createObjectURL(file_data2) + '" alt="'  +  file_data2.name  + '" /></div>';
+        }
+        construc += "</div>";
+        $('.preview2').append(construc);
+    });
 
-        $(".preview2").on('click','span.imageremove2',function(){
-            var trash = $(this).data("file");
-            for(var i=0;i<storedFiles.length;i++) {
-                if(storedFiles[i].name === trash) {
-                    storedFiles.splice(i,1);
-                    break;
-                }
+    $(".preview2").on('click','span.imageremove2',function(){
+        var trash = $(this).data("file");
+        for(var i=0;i<storedFiles.length;i++) {
+            if(storedFiles[i].name === trash) {
+                storedFiles.splice(i,1);
+                break;
             }
-            $(this).parent().remove();
+        }
+        $(this).parent().remove();
 
-        });
+    });
+
+    // qty calculation
+
+    $("body").delegate(".qty","keyup",function(event){
+        event.preventDefault();
+        var row = $(this).parent().parent();
+        var qty = row.find('.qty').val();
+            if (isNaN(qty)) {
+                qty = 1;
+            }
+            if (qty < 1) {
+                qty = 1;
+            }
+        
+        var qty_total= 0;
+        $('.qty').each(function(){
+            qty_total += ($(this).val()-0);
+        })
+        $('#quantity').val(qty_total);
+        
+    })
+    // qty calculation end
+
+
+
+
 </script>
 @endsection

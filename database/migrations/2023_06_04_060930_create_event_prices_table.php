@@ -22,6 +22,9 @@ return new class extends Migration
             $table->string('type',255)->nullable();
             $table->double('ticket_price',10,2)->nullable();
             $table->string('qty',255)->nullable();
+            $table->string('available_qty',255)->nullable();
+            $table->string('sold_qty',255)->nullable();
+            $table->string('max_person',255)->nullable();
             $table->longText('note')->nullable();
             $table->boolean('status')->default(0);
             $table->string('updated_by')->nullable();

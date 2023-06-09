@@ -162,7 +162,7 @@ body {
   z-index: 1;
 }
 .siteHeader .navCustom .nav-link {
-  font-size: 24px;
+  font-size: 23px;
   font-family: "DarkerGrotesque-semibold";
   margin: 0 10px;
   color: #172158;
@@ -847,13 +847,9 @@ body::-webkit-scrollbar-thumb {
   font-family: "DarkerGrotesque-bold";
 }
 .card-theme .card-body .card-title a {
-  color: #003057;
-  white-space: nowrap;
-  width: 98%;
-  overflow: hidden;
-  text-overflow: ellipsis; 
-  display: block;
-  height: 30px;
+    min-height: 50px; 
+    color: #003057; 
+    display:block;
 }
 .card-theme .card-body span {
   font-size: 18px;
@@ -1026,8 +1022,9 @@ body::-webkit-scrollbar-thumb {
 }
 
 .sideCard {
-  max-height: 490px;
-  overflow-x: hidden;
+  max-height: 231px;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 .sideCard::-webkit-scrollbar {
   background-color: #fefefe;
@@ -1479,9 +1476,7 @@ div#qrcodeDiv svg {
   margin-right: auto;
 }
 
-.card-body .inner{ 
-  min-height: 213px; 
-}
+ 
 
 .select2-container .select2-selection--single { 
   height: 44px; 

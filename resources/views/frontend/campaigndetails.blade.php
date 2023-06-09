@@ -17,7 +17,7 @@
         padding: 14px;
         border: 1px solid #ccc;
         margin: 1px;
-        font-size: 72px;
+        font-size: 30px;
         color: #0c4c45;
         background-color: #ccc;
     }
@@ -71,8 +71,57 @@
                 </div>
             </div>
             <div class='col-md-4'>
+
+                <div>
+                    <div class=" display-6 fw-bold"> £@if (isset($totalcollection))
+                        {{$totalcollection}}
+                    @else 0 @endif  </div>
+                    <span class="w-100 fw-bold">raised of £{{$data->raising_goal}} goal</span> 
+
+                    <div class="d-flex justify-content-between my-3 ">
+                        @if (Auth::user())
+                            <a href="{{ route('frontend.campaignDonate',$data->id)}}" class="btn-theme bg-secondary w-100 me-1 ms-0">Donate Now</a>
+                        @else
+                            <!-- Button trigger modal -->
+                            <button type="button"  class="btn-theme bg-secondary w-100 me-1 ms-0" style="border: none;background: #18988b;color: white;" data-bs-toggle="modal" data-bs-target="#loginModal">
+                                Donate Now
+                                </button>
+                        @endif
+                        <button class="btn-theme bg-primary w-100 ms-1" data-bs-toggle="modal"
+                            data-bs-target="#shareModal">Share</button>
+                    </div>
+                    <div class="card p-4 rounded sideCard">
+                       
+                        @foreach ($doners as $doner)
+
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div>
+                                    
+                                    <h5 class="user d-inline ms-2 fw-bold">
+                                        {{$doner->donation_display_name}}
+                                    </h5>
+                                </div>
+                                <h5 class="fw-bold mb-0">£{{$doner->sumamount}}</h5>
+                            </div>
+                        @endforeach
+                        
+                    </div>
+                    <div class="my-3">
+
+                        @if (($totalcollection> 0))
+                        
+                        <a href="#" class="btn-theme bg-primary w-100 ms-1"  data-bs-toggle="modal" data-bs-target="#viewMoreDonation">View More..</a>
+
+                        @endif
+
+
+                    </div>
+                </div>
+
+
+
                 
-                <div class="card p-4 rounded sideCard mb-3">
+                {{-- <div class="card p-4 rounded sideCard mb-3">
                     <div class=" display-6 fw-bold"> £@if (isset($totalcollection))
                         {{$totalcollection}}
                     @else 0 @endif  </div>
@@ -100,11 +149,10 @@
                             <h3 class="fw-bold">£{{$doner->sumamount}}</h3>
                         </div>
                     @endforeach
+
                     
-                    <div class="my-3">
-                        <a href="#" class="btn-theme bg-primary w-100 ms-1">View More..</a>
-                    </div>
-                </div>
+                    
+                </div> --}}
 
             </div>
         <div>
@@ -384,6 +432,74 @@
           </div>
         </div>
     </div>
+
+         <!-- Modal -->
+         <div class="modal fade" id="viewMoreDonation" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content">
+                    <div class="modal-header py-2 bg-primary">
+                        <h4 class="modal-title fw-bold my-1 text-white" id="exampleModalLabel">Donations</h4>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row px-3 mb-2">
+                            <!-- loop -->
+                            <div class="mb-2 d-flex align-items-center justify-content-between px-2">
+                                <div class="d-flex align-items-start">
+                                    <img src="https://via.placeholder.com/30x30.png" width="30px" height="30px" class="img-fluid rounded">
+                                    <h5 class="user d-inline ms-2 fw-bold d-flex flex-column ">
+                                        Martin Smith 
+                                         <sub class="txt-secondary">1hr</sub> 
+                                    </h5>
+                                </div>
+                                <h5 class="fw-bold">$150</h5>
+                            </div>
+                            <div class="mb-2 d-flex align-items-center justify-content-between px-2">
+                                <div class="d-flex align-items-start">
+                                    <img src="https://via.placeholder.com/30x30.png" width="30px" height="30px" class="img-fluid rounded">
+                                    <h5 class="user d-inline ms-2 fw-bold d-flex flex-column ">
+                                        Martin Smith 
+                                         <sub class="txt-secondary">1hr</sub> 
+                                    </h5>
+                                </div>
+                                <h5 class="fw-bold">$150</h5>
+                            </div>
+                            <div class="mb-2 d-flex align-items-center justify-content-between px-2">
+                                <div class="d-flex align-items-start">
+                                    <img src="https://via.placeholder.com/30x30.png" width="30px" height="30px" class="img-fluid rounded">
+                                    <h5 class="user d-inline ms-2 fw-bold d-flex flex-column ">
+                                        Martin Smith 
+                                         <sub class="txt-secondary">1hr</sub> 
+                                    </h5>
+                                </div>
+                                <h5 class="fw-bold">$150</h5>
+                            </div>
+                            <div class="mb-2 d-flex align-items-center justify-content-between px-2">
+                                <div class="d-flex align-items-start">
+                                    <img src="https://via.placeholder.com/30x30.png" width="30px" height="30px" class="img-fluid rounded">
+                                    <h5 class="user d-inline ms-2 fw-bold d-flex flex-column ">
+                                        Martin Smith 
+                                         <sub class="txt-secondary">1hr</sub> 
+                                    </h5>
+                                </div>
+                                <h5 class="fw-bold">$150</h5>
+                            </div>
+                            <div class="mb-2 d-flex align-items-center justify-content-between px-2">
+                                <div class="d-flex align-items-start">
+                                    <img src="https://via.placeholder.com/30x30.png" width="30px" height="30px" class="img-fluid rounded">
+                                    <h5 class="user d-inline ms-2 fw-bold d-flex flex-column ">
+                                        Martin Smith 
+                                         <sub class="txt-secondary">1hr</sub> 
+                                    </h5>
+                                </div>
+                                <h5 class="fw-bold">$150</h5>
+                            </div>
+                           
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
 @endsection
 
 @section('script')

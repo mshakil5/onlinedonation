@@ -279,10 +279,9 @@ class FrontendController extends Controller
         ->twitter()
         ->whatsapp();
 
-        $data = Event::with('eventimage')->where('id',$id)->first();
+        $data = Event::with('eventimage','eventprice')->where('id',$id)->first();
         
-
-        // dd($doners);
+        // dd($data);
         return view('frontend.eventdetails', compact('data','shareComponent'));
     }
 }

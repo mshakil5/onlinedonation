@@ -73,6 +73,9 @@ Route::get('/event/{id}', [FrontendController::class, 'eventDetails'])->name('fr
 Route::get('/charity-registration', [CharityController::class, 'charity'])->name('charity.register');
 Route::post('/charity-registration', [CharityController::class, 'charityregistration'])->name('charity.registration');
 
+// get event type
+Route::post('gettype', [EventController::class, 'getEventTicketType']);
+
 
 /*------------------------------------------
 --------------------------------------------

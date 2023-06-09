@@ -11,12 +11,12 @@ class Event extends Model
 
     public function eventprice()
     {
-        return $this->hasMany(EventImage::class);
+        return $this->hasMany(EventPrice::class);
     }
 
     public function eventimage()
     {
-        return $this->hasMany(EventPrice::class);
+        return $this->hasMany(EventImage::class);
     }
 
     public function user()

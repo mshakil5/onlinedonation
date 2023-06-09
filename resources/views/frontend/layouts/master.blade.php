@@ -16,7 +16,7 @@
     <meta property='og:image:height' content='627' />
     <meta property="og:type" content='website'/> -->
 
-    <title>GoGiving @yield('title')</title>
+    <title>Online Donation @yield('title')</title>
     <link rel="icon" href="{{ asset('assets/images/favicon.png')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-5.1.3min.css')}}">
     <link rel="stylesheet" href="{{ asset('assets/css/app.css')}}">
