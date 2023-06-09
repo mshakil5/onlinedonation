@@ -279,8 +279,8 @@
                             </select>
                         </div>
 
-                        <input type="number" id="qty" name="qty" value="" >
-                        <input type="number" id="pamount" name="pamount" value="" >
+                        <input type="number" id="qty" name="qty" value="" hidden>
+                        <input type="number" id="pamount" name="pamount" value="" hidden>
 
                         {{-- <div class="d-flex align-items-center justify-content-between">
                             <select name="selectqty" id="selectqty" class="form-control darkerGrotesque-bold fs-5 darkerGrotesque-medium select2">
