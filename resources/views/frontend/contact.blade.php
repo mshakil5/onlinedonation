@@ -2,9 +2,7 @@
 
 @section('css')
 @endsection
-
 @section('content')
-
 <section class="contact py-5">
     <div class="container">
         <div class="row">
@@ -16,9 +14,9 @@
                         </div>
                     </div>
                     <div class="col-lg-6 d-flex align-items-center justify-content-center">
-                        {{-- <img src="https://via.placeholder.com/520.png" alt="" class="w-100"> --}}
-                    </div><div class="col-lg-6">
-                      
+                          <img class='img-fluid shadow-sm' src="{{asset('assets/images/undraw_Envelope_re_f5j4.png')}}" alt="conatct image missing" > 
+                    </div>
+                    <div class="col-lg-6"> 
                         <div class="theme-para ">
                             Fill out the form below and we’ll get back to you as   soon as we can.
                         </div>
