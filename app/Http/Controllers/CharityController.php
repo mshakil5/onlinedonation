@@ -288,5 +288,63 @@ class CharityController extends Controller
         
     }
 
+    // serach charity start
+    public function getCharityForCampaign(Request $request){
+
+        $searchdata = $request->searchdata;
+        
+
+        if (isset($searchdata)) {
+            $charities = User::select('photo','id','name','postcode','town','street_name','house_number')->where([
+                ['name', 'LIKE', "%{$searchdata}%"],
+                ['is_type', '2'],
+                ['status','1']
+            ])->orWhere([
+                ['phone', 'LIKE', "%{$searchdata}%"],
+                ['is_type', '2'],
+                ['status','1']
+            ])->limit(6)->orderby('id','DESC')->where('name',)->get();
+        } else {
+            $charities = User::select('photo','id','name','postcode','town','street_name','house_number')->where('is_type', '2')->limit(6)->orderby('id','DESC')->where('status','1')->get();
+        }
+        
+
+        $prop = '';
+        foreach ($charities as $charity){
+            // <!-- Single charity Start -->
+            $prop.= '<div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="card-theme mb-3">
+                <div class="topper d-flex align-items-center justify-content-center">
+                    <a href="" class="p-0 d-block">
+                        <img src="'.url('/images/'.$charity->photo).'" alt="'.$charity->name.'" />
+                    </a>
+                </div>
+                <div class="card-body bg-light text-center">
+                    <div class="inner">
+                        <div class="card-title ">     
+                            <a href="#">'.$charity->name.'</a>
+                        </div>
+                       <h5 class="mb-0 darkerGrotesque-semibold mb-3 d-flex align-items-center justify-content-center" style="min-height:45px;">
+                        <iconify-icon icon="bx:map"></iconify-icon>
+                        <span class="text-dark">'.$charity->house_number.' '.$charity->street_name.' '.$charity->town.' '.$charity->postcode.'</span>
+                       </h5> 
+                       
+                       <div class="w-100 text-center">
+
+                        <div class="">
+                        <a href="'.url('start-a-charity-campaign/'.$charity->id).'" class="btn btn-sm btn-theme bg-primary py-1 mx-auto fs-5">Select</a>
+                        </div>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div>';
+            // <!-- Single charity End -->
+            }
+            return response()->json(['status'=> 303,'charity'=>$prop]);
+
+        }
+    // serach charity start end
+
     
 }

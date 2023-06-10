@@ -36,7 +36,10 @@
             <p class="alert alert-danger"> {{ session()->get('error') }}</p>
             @endif
         </div>
-        <div class="row mt-5"> 
+        {{-- <div class="row mt-5"> 
+
+        </div> --}}
+        <div class="row mt-5" id="get_charity"> 
 
             @foreach ($charities as $charity)
             <div class="col-md-3 col-sm-6 col-xs-12">
@@ -87,27 +90,25 @@
 <script>
 
 
+$(document).ready(function () {
 
+        //header for csrf-token is must in laravel
+        $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
         // select ticket type
         var url = "{{URL::to('/get-charity-campaign')}}";
             $("#searchCharity").keyup(function(){
 		            event.preventDefault();
-                    var data = $(this).val();
-                    console.log(data);
+                    var searchdata = $(this).val();
+                    console.log(searchdata);
                     
                     $.ajax({
                     url: url,
                     method: "POST",
-                    data: {data:data},
+                    data: {searchdata:searchdata},
 
                     success: function (d) {
-                        if (d.status == 303) {
-                            console.log(d);
-                        }else if(d.status == 300){
-                            
-                            
-                           
-                        }
+                        console.log(d);
+                        $("#get_charity").html(d.charity);
                     },
                     error: function (d) {
                         console.log(d);
@@ -115,6 +116,9 @@
                 });
 
             });
+
+            
+    });
 </script>
 
 
