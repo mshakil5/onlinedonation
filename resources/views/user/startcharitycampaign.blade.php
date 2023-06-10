@@ -44,16 +44,16 @@
                             
 
                             <div class="row mb-2">
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     @if (isset($data->photo))
-                                        <img src="{{ asset('images/'.$data->photo)}}" class="img-fluid" alt="">
+                                        <img src="{{ asset('images/'.$data->photo)}}" class="img-fluid mb-3" alt="">
                                     @else
                                         <img src="https://via.placeholder.com/510x440.png" class="img-fluid" alt="">
                                     @endif
                                 </div>
 
 
-                                <div class="col-8">
+                                <div class="col-md-8">
                                     <div class="row mb-2">
                                         <div class="col-4">
                                             <label style="font-size: 20px">Charity Name </label>
@@ -87,30 +87,30 @@
                             </div><hr>
 
                             <div class="row mb-2">
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <label style="font-size: 20px">Your starting goal </label>
                                 </div>
-                                <div class="col-8">
+                                <div class="col-md-8">
                                     <input type="number" class="form-control fs-4" placeholder="Your starting goal" value="" id="raising_goal" name="raising_goal">
                                 </div>
                             </div>
 
                             <div class="row mb-2">
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     
                                     <label for="image" class="darkerGrotesque-medium fw-bold">Upload Photo</label>
                                     <input type="file" name="image[]" class="form-control" id="image" multiple required>
                                     
                                 </div>
 
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     
                                     <label for="fimage" class="darkerGrotesque-medium fw-bold">Feature Image</label>
                                     <input type="file" name="fimage[]" class="form-control" id="fimage"  required>
                                     
                                 </div>
 
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     
                                     <label for="video_link" class="darkerGrotesque-medium fw-bold"> Upload Video Link </label>
                                     <input type="text" name="video_link" class="form-control" id="video_link"  value="" >
@@ -119,14 +119,14 @@
                             </div>
 
                             <div class="row mb-2">
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     
                                     <label for="tagline" class="darkerGrotesque-medium fw-bold">Tagline</label>
                                     <input type="text" name="tagline" value="" class="form-control" id="tagline">
 
                                 </div>
 
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <label for="funding_type" class="darkerGrotesque-medium fw-bold">Funding Type</label>
                                     <select name="funding_type" class="form-control" id="funding_type">
                                         <option value="Partial">Partial</option>
@@ -135,7 +135,7 @@
 
                                 </div>
                                 
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <label for="end_date" class="darkerGrotesque-medium fw-bold"> End Date </label>
                                     <input type="date" name="end_date" class="form-control" id="end_date" value="">
 
@@ -148,34 +148,34 @@
                             </div><hr>
 
                             <div class="row mb-2">
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <label for="email" class="darkerGrotesque-medium fw-bold">Email</label>
                                     <input type="text" name="email" class="form-control" id="email" value="{{Auth::user()->email}}" readonly>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <label for="name" class="darkerGrotesque-medium fw-bold">Name</label>
                                     <input type="text" name="name" class="form-control" id="name" value="{{Auth::user()->name}}" readonly>
                                 </div>
-                                <div class="col-4">
+                                <div class="col-md-4">
                                     <label for="sur_name" class="darkerGrotesque-medium fw-bold"> Surname </label>
                                     <input type="text" name="sur_name" class="form-control" id="sur_name" value="{{Auth::user()->sur_name}}" readonly>
                                 </div>
                             </div>
 
                             <div class="row mb-2">
-                                <div class="col-3">
+                                <div class="col-md-3">
                                     <label for="house_number" class="darkerGrotesque-medium fw-bold">House Number</label>
                                     <input type="text" name="house_number" class="form-control" id="house_number" value="{{Auth::user()->house_number}}" readonly>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-md-3">
                                     <label for="street_name" class="darkerGrotesque-medium fw-bold">Street Name</label>
                                     <input type="text" name="street_name" class="form-control" id="street_name" value="{{Auth::user()->street_name}}" readonly>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-md-3">
                                     <label for="town" class="darkerGrotesque-medium fw-bold"> Town </label>
                                     <input type="text" name="town" class="form-control" id="town" value="{{Auth::user()->town}}" readonly>
                                 </div>
-                                <div class="col-3">
+                                <div class="col-md-3">
                                     <label for="postcode" class="darkerGrotesque-medium fw-bold"> Surname </label>
                                     <input type="text" name="postcode" class="form-control" id="postcode" value="{{Auth::user()->postcode}}" readonly>
                                 </div>

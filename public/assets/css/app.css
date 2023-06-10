@@ -1487,3 +1487,9 @@ div#qrcodeDiv svg {
   line-height: 40px;
 }
 
+.form-control[type=file] {
+  overflow: hidden;
+  height: unset;
+  min-height: unset;
+}
+
