@@ -66,7 +66,7 @@
                            <div class="w-100 text-center">
 
                             <div class="">
-                                <a href="#" class="btn btn-sm btn-theme bg-primary py-1 mx-auto fs-5">Select</a>
+                                <a href="{{route('frontend.startcharitycampaign', $charity->id)}}" class="btn btn-sm btn-theme bg-primary py-1 mx-auto fs-5">Select</a>
                             </div>
                            </div>
                         </div>
