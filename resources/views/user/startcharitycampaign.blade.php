@@ -38,9 +38,10 @@
                         <div class="col-lg-10  mx-auto">
                             <div class="pagetitle">
                                 Charity information
-                            </div><hr>
-                            <form method="POST" action="#"  enctype="multipart/form-data">
-                                @csrf
+                            </div>
+                            <div class="ermsg"></div>
+                            <hr>
+                            
 
                             <div class="row mb-2">
                                 <div class="col-4">
@@ -59,6 +60,7 @@
                                         </div>
                                         <div class="col-8">
                                             <input type="text" class="form-control" value="{{ $data->name }}" readonly>
+                                            <input type="hidden" id="charity_id" name="charity_id" class="form-control" value="{{ $data->id }}"  readonly>
                                         </div>
                                     </div>
                                     <div class="row mb-2">
@@ -94,20 +96,24 @@
                             </div>
 
                             <div class="row mb-2">
-                                <div class="col-6">
+                                <div class="col-4">
                                     
                                     <label for="image" class="darkerGrotesque-medium fw-bold">Upload Photo</label>
                                     <input type="file" name="image[]" class="form-control" id="image" multiple required>
                                     
-                                    <div class="col-md-12 my-2" style="display: none">
-                                        <div class="preview2"></div>
-                                    </div>
-
                                 </div>
-                                <div class="col-6">
+
+                                <div class="col-4">
+                                    
+                                    <label for="fimage" class="darkerGrotesque-medium fw-bold">Feature Image</label>
+                                    <input type="file" name="fimage[]" class="form-control" id="fimage"  required>
+                                    
+                                </div>
+
+                                <div class="col-4">
                                     
                                     <label for="video_link" class="darkerGrotesque-medium fw-bold"> Upload Video Link </label>
-                                    <input type="text" name="video_link" class="form-control" id="video_link"  value="">
+                                    <input type="text" name="video_link" class="form-control" id="video_link"  value="" >
 
                                 </div>
                             </div>
@@ -178,27 +184,17 @@
 
                             <div class="col-lg-12 mt-3">
                                 <p class="para mb-3 text-muted fs-6 ">
-                                    <input type="checkbox" class="me-2" required>I agree to the <a href="{{route('frontend.terms')}}" style="text-decoration: none;color:#212529"> Terms & Conditions. </a><br>
+                                    <input type="checkbox" class="me-2" id="termscondition" required>I agree to the <a href="{{route('frontend.terms')}}" style="text-decoration: none;color:#212529"> Terms & Conditions. </a><br>
                                 </p>
                             </div>
                             
 
                             <div class="form-group  text-center">
-                                <button type="submit" class="btn-theme bg-primary text-center mx-0 ">Create a new campaign</button>
+                                <input type="button" id="addBtn" value="Create a new campaign" class="btn-theme bg-primary text-center mx-0">
                             </div>
-
-
-                        </form>
 
                         </div>
                     </div>
-
-
-                    
-                    
-                    
-
-                   
                 </div>
             </div>
         </div>
@@ -210,4 +206,71 @@
 
 
 @section('script')
+
+<script>
+
+    var storedFiles = [];
+    $(document).ready(function () {
+
+    //header for csrf-token is must in laravel
+    $.ajaxSetup({ headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') } });
+            //
+            var url = "{{URL::to('/create-a-charity-campaign')}}";
+            // console.log(url);
+            $("#addBtn").click(function(){
+
+                
+                if ($('#termscondition').is(":checked")){
+                }else{
+                    alert('Please agree to terms and conditions');
+                    return;
+                }
+                
+                    var file_data = $('#fimage').prop('files')[0];
+                    if(typeof file_data === 'undefined'){
+                        file_data = 'null';
+                    }
+
+                    var form_data = new FormData();
+                    for(var i=0, len=storedFiles.length; i<len; i++) {
+                        form_data.append('image[]', storedFiles[i]);
+                    }
+                    form_data.append('fimage', file_data);
+                    form_data.append("charity_id", $("#charity_id").val());
+
+                    form_data.append("raising_goal", $("#raising_goal").val());
+                    form_data.append("video_link", $("#video_link").val());
+                    form_data.append("tagline", $("#tagline").val());
+                    form_data.append("funding_type", $("#funding_type").val());
+                    form_data.append("end_date", $("#end_date").val());                    
+                    
+                    
+                    $.ajax({
+                        url: url,
+                        method: "POST",
+                        contentType: false,
+                        processData: false,
+                        data:form_data,
+                        success: function (d) {
+                            if (d.status == 303) {
+                                $(".ermsg").html(d.message);
+                            }else if(d.status == 300){
+                                pagetop();
+                                $(".ermsg").html(d.message);
+                                window.setTimeout(function(){location.reload()},2000)
+                            }
+                        },
+                        error: function (d) {
+                            console.log(d);
+                        }
+                    });
+                    
+                
+
+            });
+
+    });
+
+</script>
+
 @endsection

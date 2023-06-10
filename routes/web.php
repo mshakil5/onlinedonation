@@ -156,10 +156,9 @@ Route::group(['middleware' => ['auth']], function(){
 
     // charity campaign
     Route::get('/charity-campaign', [FrontendController::class, 'charityCampaign'])->name('frontend.charityCampaign');
-
-
     
     Route::get('/start-a-charity-campaign/{id}', [CharityCampaignController::class, 'startCharityCampaign']);
+    Route::post('/create-a-charity-campaign', [CharityCampaignController::class, 'storeCharityCampaign']);
 
 });
 
